@@ -32,7 +32,7 @@ namespace Sanch.Fitness.BL.Controller
         {
             if (string.IsNullOrWhiteSpace(userName))
             {
-                throw new ArgumentNullException("Имя пользователя не может быть пустым или null", nameof(userName));
+                throw new ArgumentNullException("Имя пользователя не может быть пустым", nameof(userName));
             }
 
             Users = GetUsersData();
@@ -44,30 +44,22 @@ namespace Sanch.Fitness.BL.Controller
                 CurrentUser = new User(userName);
                 Users.Add(CurrentUser);
                 IsNewUser = true;
-                Save();
             }
-
         }
 
         /// <summary>
-        /// Получить сохраненный список пользователей
+        /// Получить сохраненный список пользователей.
         /// </summary>
-        /// <returns>Пользователи</returns>
+        /// <returns></returns>
         private List<User> GetUsersData()
         {
-            return Load<List<User>>("users.dat") ?? new List<User>();
+            return Load<User>() ?? new List<User>();
         }
 
-        /// <summary>
-        /// Ввод подробных данных
-        /// </summary>
-        /// <param name="genderName">Пол</param>
-        /// <param name="birthDate">Дата рождения</param>
-        /// <param name="weight">Вес</param>
-        /// <param name="height">Рост</param>
-        public void SetNawUserData(string genderName, DateTime birthDate, double weight = 1, double height = 1)
+
+        public void SetNewUserData(string genderName, DateTime birthDate, double weight = 1, double height = 1)
         {
-            //Проверка
+            // Проверка
 
             CurrentUser.Gender = new Gender(genderName);
             CurrentUser.BirthDate = birthDate;
@@ -77,11 +69,11 @@ namespace Sanch.Fitness.BL.Controller
         }
 
         /// <summary>
-        /// Сохранить данные пользователя
+        /// Сохранить данные пользователя.
         /// </summary>
         public void Save()
         {
-            Save("users.dat", Users);
+            Save(Users);
         }
     }
 }

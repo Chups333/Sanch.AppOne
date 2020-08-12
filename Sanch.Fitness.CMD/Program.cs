@@ -38,7 +38,7 @@ namespace Sanch.Fitness.CMD
                 var height = ParseDouble("рост");
 
 
-                userController.SetNawUserData(gender, birthDate, weight, height);
+                userController.SetNewUserData(gender, birthDate, weight, height);
             }
 
             Console.WriteLine(userController.CurrentUser);
